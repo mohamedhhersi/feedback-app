@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import Card from './shared/Card'
 import Button from './shared/Button'
 import { isDisabled } from '@testing-library/user-event/dist/utils'
@@ -11,7 +11,11 @@ const [rating, setRating] = useState(10)
 const [btnDisabled, setbtnDisabled] = useState(true)
 const [message, setMessage] = useState('')
 
-const {addFeedback}  = useContext(FeedbackContext)
+const {addFeedback, feedbackEdit}  = useContext(FeedbackContext)
+
+useEffect(()=>{
+console.log('hello')
+}, [feedbackEdit])
 
 const handleTextChange = ((e)=>{
     if(text==='') {
