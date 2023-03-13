@@ -11,10 +11,14 @@ const [rating, setRating] = useState(10)
 const [btnDisabled, setbtnDisabled] = useState(true)
 const [message, setMessage] = useState('')
 
-const {addFeedback, feedbackEdit}  = useContext(FeedbackContext)
+const {addFeedback, feedbackEdit, updateFeedback}  = useContext(FeedbackContext)
 
 useEffect(()=>{
-console.log('hello')
+if(feedbackEdit.edit === true) {
+    setbtnDisabled(false)
+    setText(feedbackEdit.item.text)
+    setRating(feedbackEdit.item.rating)
+}
 }, [feedbackEdit])
 
 const handleTextChange = ((e)=>{
@@ -39,7 +43,12 @@ const handleSubmit = (e) => {
             text,
             rating,
         }
-        addFeedback(newFeedback)
+
+        if(feedbackEdit.edit == true) {
+            updateFeedback(feedbackEdit.item.id, newFeedback)
+        } else {
+            addFeedback(newFeedback)
+        }
 
         setText('')
     }
