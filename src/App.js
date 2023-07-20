@@ -14,7 +14,7 @@ function App() {
         <div className="container">
           <Routes>
             <Route
-              exact
+              index
               path="/"
               element={
                 <>
